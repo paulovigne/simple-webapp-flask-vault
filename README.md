@@ -9,7 +9,7 @@ This is used in the demonstration of developments.
   - Install and Configure Web Server
   - Start Web Server
 
-## 0. Start Vault as Dev and insert data
+## 1. Start Vault as Dev and create a kv secret engine
 
     export VAULT_DEV_LISTEN_ADDRESS="0.0.0.0:8200"
     export VAULT_DEV_ROOT_TOKEN_ID="root"
@@ -17,15 +17,34 @@ This is used in the demonstration of developments.
     vault secrets enable -path=app-secrets kv
     vault kv enable-versioning app-secrets
     vault kv put app-secrets/simple-webapp-flask app_color=blue
-   
-## 1. Install all required dependencies
+
+## 2. Enable a approle login
+
+    vault auth enable approle
+    
+## 3. Create a policy and role
+
+    cat <<EOF > /tmp/simple-webapp-flask.policy
+    path "app-secrets/data/simple-webapp-flask" {
+      capabilities = ["read"]
+    }
+    EOF
+    vault policy write simple-webapp-flask /tmp/simple-webapp-flask.policy
+    vault write auth/approle/role/simple-webapp-flask-role token_policies="simple-webapp-flask"
+
+## 4. Record Role-ID and Secred-ID to a file
+
+    vault read -field=role_id auth/approle/role/simple-webapp-flask-role/role-id > /tmp/roleid
+    vault write -field=secret_id -f auth/approle/role/simple-webapp-flask-role/secret-id > /tmp/secretid
+
+## 5. Install all required dependencies
   
   Python and its dependencies
 
     apt-get install -y python python-setuptools python-dev build-essential python-pip
 
    
-## 2. Install and Configure Web Server
+## 6. Install and Configure Web Server
 
 Install Python Flask and Hvac dependencies
 
@@ -34,13 +53,13 @@ Install Python Flask and Hvac dependencies
 
 - Copy app.py or download it from source repository
 
-## 3. Start Web Server
+## 7. Start Web Server
 
 Start web server
 
     FLASK_APP=app.py flask run --host=0.0.0.0
     
-## 4. Test
+## 8. Test
 
 Open a browser and go to URL
 
