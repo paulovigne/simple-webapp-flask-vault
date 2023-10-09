@@ -1,4 +1,4 @@
-# Simple Web Application
+# Simple Web Application + Vault Python SDK HVAC
 
 This is a simple web application using [Python Flask](http://flask.pocoo.org/). 
 This is used in the demonstration of developments.
@@ -8,6 +8,15 @@ This is used in the demonstration of developments.
   - Install all required dependencies
   - Install and Configure Web Server
   - Start Web Server
+
+## 0. Start Vault as Dev and insert data
+
+    export VAULT_DEV_LISTEN_ADDRESS="0.0.0.0:8200"
+    export VAULT_DEV_ROOT_TOKEN_ID="root"
+    vault server -dev -dev-no-store-token
+    vault secrets enable -path=app-secrets kv
+    vault kv enable-versioning app-secrets
+    vault kv put app-secrets/simple-webapp-flask app_color=blue
    
 ## 1. Install all required dependencies
   
@@ -18,9 +27,10 @@ This is used in the demonstration of developments.
    
 ## 2. Install and Configure Web Server
 
-Install Python Flask dependency
+Install Python Flask and Hvac dependencies
 
     pip install flask
+    pip install hvac
 
 - Copy app.py or download it from source repository
 
