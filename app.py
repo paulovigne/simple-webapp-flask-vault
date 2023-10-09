@@ -13,7 +13,10 @@ lines=secretid_file.readlines()
 secretid_file_value=lines[0]
 secretid_file.close()
 
-client = hvac.Client()
+client = hvac.Client(
+    url='http://127.0.0.1:8200',
+    verify=False
+)
 
 client.auth.approle.login(
     role_id=roleid_file_value,
