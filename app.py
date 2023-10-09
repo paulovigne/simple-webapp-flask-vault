@@ -3,15 +3,13 @@ import hvac
 from flask import Flask
 app = Flask(__name__)
 
-roleid_file=open("/authentication/account.txt","r")
-lines=roleid_file.readlines()
-roleid_file_value=lines[0]
-roleid_file.close()
-
-secretid_file=open("/authentication/account.txt","r")
-lines=secretid_file.readlines()
-secretid_file_value=lines[0]
-secretid_file.close()
+def getValueFromFile(filename):
+    import imp
+    f = open(filename)
+    global data
+    data = f.readline()
+    f.close()
+    print(data)
 
 client = hvac.Client(
     url='http://127.0.0.1:8200',
@@ -19,8 +17,8 @@ client = hvac.Client(
 )
 
 client.auth.approle.login(
-    role_id=roleid_file_value,
-    secret_id=secretid_file_value,
+    role_id=getValueFromFile(/etc/vault.d/roleid-py),
+    secret_id=getValueFromFile(/etc/vault.d/secretid-py),
 )
 
 read_response = client.secrets.kv.read_secret_version(path='app-secrets/simple-webapp-flask')
