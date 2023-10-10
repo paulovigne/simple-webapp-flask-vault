@@ -14,6 +14,9 @@ This is used in the demonstration of developments.
     export VAULT_ADDR=http://0.0.0.0:8200
     export VAULT_TOKEN="root"
     vault server -dev -dev-no-store-token
+
+  Creating secret kv v2
+    
     vault secrets enable -path=app-secrets kv
     vault kv enable-versioning app-secrets
     vault kv put app-secrets/simple-webapp-flask app_color=blue
