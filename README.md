@@ -47,10 +47,9 @@ This is used in the demonstration of developments.
    
 ## 6. Install and Configure Web Server
 
-Install Python Flask and Hvac dependencies
+Install Python dependencies
 
-    pip3 install flask
-    pip3 install hvac
+    pip3 install -r requirements.txt
 
 - Copy app.py or download it from source repository
 
