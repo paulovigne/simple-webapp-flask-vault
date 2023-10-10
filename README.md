@@ -11,8 +11,8 @@ This is used in the demonstration of developments.
 
 ## 1. Start Vault as Dev and create a kv secret engine
 
-    export VAULT_DEV_LISTEN_ADDRESS="0.0.0.0:8200"
-    export VAULT_DEV_ROOT_TOKEN_ID="root"
+    export VAULT_ADDR=http://0.0.0.0:8200
+    export VAULT_TOKEN="root"
     vault server -dev -dev-no-store-token
     vault secrets enable -path=app-secrets kv
     vault kv enable-versioning app-secrets
@@ -41,15 +41,16 @@ This is used in the demonstration of developments.
   
   Python and its dependencies
 
-    apt-get install -y python python-setuptools python-dev build-essential python-pip
+    Debian/Ubuntu: apt-get install -y python python-setuptools python-dev build-essential python-pip
+    Enterprise Linux: yum -y install python3 python3-pip git
 
    
 ## 6. Install and Configure Web Server
 
 Install Python Flask and Hvac dependencies
 
-    pip install flask
-    pip install hvac
+    pip3 install flask
+    pip3 install hvac
 
 - Copy app.py or download it from source repository
 
