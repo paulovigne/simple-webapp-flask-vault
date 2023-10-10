@@ -1,2 +1,3 @@
 Flask
 Hvac
+urllib3<2.0
