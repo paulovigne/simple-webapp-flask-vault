@@ -18,7 +18,7 @@ client = hvac.Client(
 
 client.auth.approle.login(
     role_id=getValueFromFile(/tmp/roleid),
-    secret_id=getValueFromFile(/tmp/secretid),
+    secret_id=getValueFromFile(/tmp/secretid)
 )
 
 read_response = client.secrets.kv.read_secret_version(path='app-secrets/simple-webapp-flask')
