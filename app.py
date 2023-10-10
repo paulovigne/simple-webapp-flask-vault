@@ -9,7 +9,7 @@ def getValueFromFile(filename):
     global data
     data = f.readline()
     f.close()
-    print(data)
+    return data
 
 client = hvac.Client(
     url='http://127.0.0.1:8200',
@@ -17,8 +17,8 @@ client = hvac.Client(
 )
 
 client.auth.approle.login(
-    role_id=getValueFromFile(/tmp/roleid),
-    secret_id=getValueFromFile(/tmp/secretid)
+    role_id=getValueFromFile('/tmp/roleid'),
+    secret_id=getValueFromFile('/tmp/secretid'),
 )
 
 @app.route("/")
