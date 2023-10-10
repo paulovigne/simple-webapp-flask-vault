@@ -21,7 +21,7 @@ client.auth.approle.login(
     secret_id=getValueFromFile(/tmp/secretid)
 )
 
-read_response = client.secrets.kv.read_secret_version(path='app-secrets/simple-webapp-flask')
+read_response = client.secrets.kv.read_secret_version(mount_point='app-secrets', path='simple-webapp-flask')
 app_color = read_response['data']['data']['app_color']
 
 @app.route("/")
