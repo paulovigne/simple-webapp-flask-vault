@@ -1,6 +1,6 @@
 # Simple Web Application + Vault Python SDK HVAC
 
-This is a simple web application using [Python Flask](http://flask.pocoo.org/). 
+This is a simple web application using [Python Flask](http://flask.pocoo.org/) and [Vault HVAC](https://python-hvac.org/). 
 This is used in the demonstration of developments.
   
   Below are the steps required to get this working on a base linux system.
