@@ -17,8 +17,7 @@ This is used in the demonstration of developments.
 
   Creating secret kv v2
     
-    vault secrets enable -path=app-secrets kv
-    vault kv enable-versioning app-secrets
+    vault secrets enable -path=app-secrets -version=2 kv
     vault kv put app-secrets/simple-webapp-flask app_color=blue
 
 ## 2. Enable a approle login
