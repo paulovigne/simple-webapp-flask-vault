@@ -11,8 +11,8 @@ This is used in the demonstration of developments.
 
 ## 1. Start Vault as Dev and create a kv secret engine
 
-    export VAULT_ADDR=http://0.0.0.0:8200
-    export VAULT_TOKEN="root"
+    export VAULT_DEV_LISTEN_ADDRESS="0.0.0.0:8200"
+    export VAULT_DEV_ROOT_TOKEN_ID="root"
     vault server -dev -dev-no-store-token
 
   Creating secret kv v2
