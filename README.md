@@ -15,6 +15,11 @@ This is used in the demonstration of developments.
     export VAULT_DEV_ROOT_TOKEN_ID="root"
     vault server -dev -dev-no-store-token
 
+  Prepare the CLI
+    
+    export VAULT_ADDR="http://127.0.0.1:8200"
+    export VAULT_TOKEN="root"
+    
   Creating secret kv v2
     
     vault secrets enable -path=app-secrets -version=2 kv
